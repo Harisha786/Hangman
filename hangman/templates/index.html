@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+        <p id="word-display">Loading...</p>
+        <div id="keyboard"></div>
+        <p>Tries left: <span id="tries"></span></p>
+        <p id="status"></p>
+        <button onclick="startGame()">🔁 Restart Game</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
