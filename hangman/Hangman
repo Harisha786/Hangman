@@ -1,0 +1,105 @@
+import random
+
+# List of words to guess from
+word_list = ['python', 'programming', 'hangman', 'computer', 'science', 'developer']
+
+# Select a random word
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+
+# Game state variables
+display = ['_' for _ in chosen_word]
+lives = 6
+guessed_letters = []
+
+# Hangman stages (for visual display)
+hangman_stages = [
+    '''
+      +---+
+      |   |
+      O   |
+     /|\\  |
+     / \\  |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+      O   |
+     /|\\  |
+     /    |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+      O   |
+     /|\\  |
+          |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+      O   |
+     /|   |
+          |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+      O   |
+      |   |
+          |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+      O   |
+          |
+          |
+          |
+    =========
+    ''',
+    '''
+      +---+
+      |   |
+          |
+          |
+          |
+          |
+    =========
+    '''
+]
+
+# Welcome message
+print("🎉 Welcome to Hangman! 🎉")
+
+# Game loop
+while '_' in display and lives > 0:
+    print("\n" + " ".join(display))
+    print(hangman_stages[6 - lives])
+    guess = input("Guess a letter: ").lower()
+
+    if guess in guessed_letters:
+        print("You already guessed that letter!")
+        continue
+    guessed_letters.append(guess)
+
+    if guess in chosen_word:
+        for i in range(word_length):
+            if chosen_word[i] == guess:
+                display[i] = guess
+    else:
+        lives -= 1
+        print(f"Wrong guess. You have {lives} lives left.")
+
+# Game result
+if '_' not in display:
